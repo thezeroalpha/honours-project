@@ -1,0 +1,37 @@
+\documentclass[10pt,notitlepage]{article}
+\usepackage[a4paper, top=0.6in, left=0.6in, right=0.6in, bottom=0.6in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{hyperref}
+\usepackage{csquotes}
+\usepackage[style=ieee]{biblatex}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{subcaption}
+
+\graphicspath{{images/}}
+\addbibresource{references.bib}
+
+\begin{document}
+  \input{titlepage}
+
+  \begin{abstract}
+    This is an abstract.
+  \end{abstract}
+
+  \input{introduction}
+  \input{background}
+  \input{methodology}
+  \input{results}
+  \input{discussion}
+  \input{related}
+  \input{conclusion}
+
+  \printbibliography
+
+  \appendix
+  \input{appendix-a}
+  \input{appendix-b}
+\end{document}
