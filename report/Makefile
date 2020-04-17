@@ -1,16 +1,23 @@
-AUXDIR=build
-FLAGS=-bibtex -cd -auxdir=$(AUXDIR) -outdir=$(AUXDIR)
+LMK_AUXDIR=build
 MAINFILE=src/report.tex
 
-.PHONY: all report clean cleanall
+LMK_FLAGS=-bibtex -cd -auxdir=$(LMK_AUXDIR) -outdir=$(LMK_AUXDIR)
+SRCFILES=$(wildcard $(dir $(MAINFILE))*.tex)
+PDFNAME:=$(basename $(notdir $(MAINFILE))).pdf
 
-all: report
-report: $(MAINFILE)
-	latexmk $(FLAGS) -pdf $(MAINFILE) \
-	  && mv src/build/report.pdf .
+.PHONY: all clean cleanall
+
+all: $(PDFNAME)
+
+$(PDFNAME): $(dir $(MAINFILE))$(LMK_AUXDIR)/report.pdf
+	mv $(dir $(MAINFILE))$(LMK_AUXDIR)/report.pdf ./$(PDFNAME)
+
+$(dir $(MAINFILE))$(LMK_AUXDIR)/report.pdf: $(SRCFILES)
+	latexmk $(LMK_FLAGS) -pdf $(MAINFILE)
 
 clean:
-	latexmk $(FLAGS) -c $(MAINFILE)
+	latexmk $(LMK_FLAGS) -c $(MAINFILE)
 
 cleanall:
-	latexmk $(FLAGS) -C $(MAINFILE)
+	latexmk $(LMK_FLAGS) -C $(MAINFILE)
+	rm ./$(PDFNAME)
