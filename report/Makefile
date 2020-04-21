@@ -5,9 +5,13 @@ LMK_FLAGS=-bibtex -cd -auxdir=$(LMK_AUXDIR) -outdir=$(LMK_AUXDIR)
 SRCFILES=$(wildcard $(dir $(MAINFILE))*.tex)
 PDFNAME:=$(basename $(notdir $(MAINFILE))).pdf
 
-.PHONY: all clean cleanall
+.PHONY: all clean cleanall open
 
 all: $(PDFNAME)
+
+open: $(PDFNAME)
+	@open $(PDFNAME) || xdg-open $(PDFNAME) || echo "Don't know how to open."
+
 
 $(PDFNAME): $(dir $(MAINFILE))$(LMK_AUXDIR)/report.pdf
 	mv $(dir $(MAINFILE))$(LMK_AUXDIR)/report.pdf ./$(PDFNAME)
