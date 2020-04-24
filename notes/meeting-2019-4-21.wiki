@@ -1,0 +1,18 @@
+= Meeting notes: Tue Apr 21 =
+* Graphs/data:
+    * [X] dedupe on four columns: service name, location, start time, end time
+    * [X] fix missing time zones
+    * [ ] categorise root causes into subcategories.
+          look to Gunawi's and Alex's classifications for inspiration.
+    * [ ] Correlation analysis (Pearson)
+    * [ ] 'causes of outages of varying severity' - remove AWS and explain. or just remove that one facet.
+    * [ ] causes of longer-duration outages: classify outages <2 hours and >2 hours. for shorter duration, "these are problems". for longer, same.
+          each facet two bars: short,long durations. each bar with regions corresponding to different failure types.
+    * [ ] severity vs users affected -- too dense, too much information. stacked bar?
+    * [ ] make similar plot as 'outages across week for top 5 components', but for root cause.
+    * [ ] "range+users vs root cause" - stacked bar, reclassify vertical axis. for visual, classify into categories. then table with all categories and numbers
+    * [ ] flow plot ("alluvial diagram") later maybe?
+    * [ ] provider-reported severity: 'status' column, look at provider pages to interpret that
+* Paper
+    * [ ] explain classification process + abbreviations
+    * [ ] in report: 5 plots, plus tables.
