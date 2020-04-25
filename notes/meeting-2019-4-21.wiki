@@ -11,7 +11,12 @@
     * [X] "range+users vs root cause" - stacked bar, reclassify vertical axis. for visual, classify into categories.
     * [X] categorise root causes into subcategories.
           look to Gunawi's and Alex's classifications for inspiration.
-    * [ ] Correlation analysis (Pearson)
+    * [X] Correlation analysis (Pearson)
+        * Pearson only for continuous variables though?
+        * tried to do Cramer's V (correlation for nominal categorical variables, based on Pearson)
+            * results: affected/range, affected/users, cause/users
+        * follow up with Thiel's U (uncertainty coefficient) for asymmetric: "provides a value in the range of [0,1], 0 means feature y provides no information about feature x, and 1 means that feature y provides full information about feature x's value"
+            * results are inconclusive, though: range given affected, cause given affected, severity given affected, users given affectd, affected given cause
     * [ ] flow plot ("alluvial diagram") later maybe?
     * [ ] provider-reported severity: 'status' column, look at provider pages to interpret that
 * Paper
