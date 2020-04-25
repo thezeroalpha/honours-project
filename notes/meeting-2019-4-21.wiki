@@ -8,8 +8,8 @@
     * [X] causes of longer-duration outages: classify outages <2 hours and >2 hours. for shorter duration, "these are problems". for longer, same.
             each facet two bars: short,long durations. each bar with regions corresponding to different failure types.
     * [X] severity vs users affected -- too dense, too much information. stacked bar?
-    * [o] "range+users vs root cause" - stacked bar, reclassify vertical axis. for visual, classify into categories. then table with all categories and numbers
-    * [ ] categorise root causes into subcategories.
+    * [X] "range+users vs root cause" - stacked bar, reclassify vertical axis. for visual, classify into categories.
+    * [X] categorise root causes into subcategories.
           look to Gunawi's and Alex's classifications for inspiration.
     * [ ] Correlation analysis (Pearson)
     * [ ] flow plot ("alluvial diagram") later maybe?
@@ -17,3 +17,4 @@
 * Paper
     * [ ] explain classification process + abbreviations
     * [ ] in report: 5 plots, plus tables.
+    * [ ] for causes, make table with all detailed categories and numbers
