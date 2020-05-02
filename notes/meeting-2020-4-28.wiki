@@ -1,6 +1,15 @@
 Tue Apr 28 11:56:51 2020
-* [.] double check deduplication
-* [.] check each provider numbers match what's reported in paper
+* [X] double check deduplication
+* [ ] check each provider numbers match what's reported in paper
+    * deduplication is fine, it's just I kept events before 2018
+    * now i'm close to what's reported in the paper:
+        * aws: 3 more
+        * azure: the same
+        * gcp: 6 less
+    * I think the difference is due to using an older dataset (the first one). compare with last table [[https://github.com/thezeroalpha/cloud-outage-analysis/blob/master/notebooks/Deduplication%20tests.ipynb|here]]
+    * Two options:
+        1. roll with this
+        2. use the new dataset. the issue is i reindexed the old ones, so don't know how i would combine it with the new dataset. plus i have classifications in separate df, and join the two (classifications+data) on the indices.
 * [X] only keep things >jan 2018
 * [X] config+dpltsk as separate category "config"
 * [X] config, code, maint as separate categories?
