@@ -1,0 +1,9 @@
+Tue Apr 28 11:56:51 2020
+* [.] double check deduplication
+* [.] check each provider numbers match what's reported in paper
+* [X] only keep things >jan 2018
+* [X] config+dpltsk as separate category "config"
+* [X] config, code, maint as separate categories?
+* [X] don't filter SAZ -- mix into single region
+* [X] human,netw should be "config"
+* [X] >2 hours -- also plot 3, 4 (we want "interesting" stuff)
