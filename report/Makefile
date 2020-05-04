@@ -24,4 +24,5 @@ clean:
 
 cleanall:
 	latexmk $(LMK_FLAGS) -C $(MAINFILE)
+	rm ./src/numbers/*
 	rm ./$(PDFNAME)

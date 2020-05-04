@@ -12,9 +12,10 @@
 \usepackage{subcaption}
 
 \graphicspath{{images/}}
+\captionsetup{width=0.8\textwidth,font+=it}
 \addbibresource{references.bib}
 
-\newcommand{\result}[1]{\input{numbers/#1}}
+\newcommand{\result}[1]{\input{numbers/#1}\unskip}
 \begin{document}
   \input{titlepage}
 

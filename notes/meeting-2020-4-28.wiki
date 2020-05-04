@@ -1,6 +1,12 @@
 Tue Apr 28 11:56:51 2020
 * [X] double check deduplication
-* [ ] check each provider numbers match what's reported in paper
+* [X] only keep things >jan 2018
+* [X] config+dpltsk as separate category "config"
+* [X] config, code, maint as separate categories?
+* [X] don't filter SAZ -- mix into single region
+* [X] human,netw should be "config"
+* [X] >2 hours -- also plot 3, 4 (we want "interesting" stuff)
+* [o] check each provider numbers match what's reported in paper
     * deduplication is fine, it's just I kept events before 2018
     * now i'm close to what's reported in the paper:
         * aws: 3 more
@@ -10,9 +16,7 @@ Tue Apr 28 11:56:51 2020
     * Two options:
         1. roll with this
         2. use the new dataset. the issue is i reindexed the old ones, so don't know how i would combine it with the new dataset. plus i have classifications in separate df, and join the two (classifications+data) on the indices.
-* [X] only keep things >jan 2018
-* [X] config+dpltsk as separate category "config"
-* [X] config, code, maint as separate categories?
-* [X] don't filter SAZ -- mix into single region
-* [X] human,netw should be "config"
-* [X] >2 hours -- also plot 3, 4 (we want "interesting" stuff)
+* [ ] is it better to normalize in root-causes-severity graph, or not?
+* [ ] which of the duration graphs looks most 'interesting'? I think it might be useful to show more than one of those plots to compare differences, but need feedback here
+* [ ] re-added components graphs -- which are most useful?
+
