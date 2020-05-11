@@ -44,11 +44,11 @@ def abbrev(s):
 # Replace words with known abbreviations
 def shorten(s):
     maps = {
-        'unavailable': 'U',
-        'degraded performance': 'P',
-        'intermittent': 'I',
-        'continuous': 'C',
-        'visual': 'V',
+        'unavailable': 'Unavail',
+        'degraded performance': 'Perf',
+        'intermittent': 'Interm',
+        'continuous': 'Cont',
+        'visual': 'Vis',
         'some': 'SU',
         'all': 'AU',
         'single region': 'SR',
