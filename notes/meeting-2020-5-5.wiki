@@ -16,5 +16,8 @@ Tue May  5 11:44:51 2020
 * [X] outages across week causes - remove aws. make causes [configuration, load, other].
 * [X] causes of longer duration: <6, 6-12, >12
 * [X] severity vs users affected: longer abbrevs
-* [ ] range vs cause -- mention in report load: some users
+* [X] range vs cause -- mention in report load: some users
+* [ ] should we include AWS in causes-vs-duration-hr-ranges? excluded in other root cause plots...but could still be useful here
+* [ ] is components-across-week.png useful?
+* [ ] is components-by-severity.png useful?
 
