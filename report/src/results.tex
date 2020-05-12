@@ -99,8 +99,8 @@ It is important to note here that this is a relatively small dataset, and the tr
 We separate the outages by duration, in three categories: short (outages lasting less than six hours, '< 6'), medium (six to twelve hours '6 to 12'), and long (more than twelve hours '> 12').
 The outages are grouped by duration and vendor, such that the horizontal axis shows the proportion of outages for a specific duration category and vendor.
 We do not plot outages that did not specify a root cause (\result{np-causes-vs-duration-hr-ranges-cause}).
-Firstly, \autoref{fig:causes vs duration ranges} shows that all AWS outages that specified a cause were shorter than six hours, and were caused by external events (e.g. third party or environment).
-However, as discussed above, only three AWS outages specified a cause.
+All AWS outages that specified a cause were shorter than six hours, and were caused by external events (e.g. third party or environment).
+However, as discussed above, only three AWS outages specified a cause, so AWS is not included in \autoref{fig:causes vs duration ranges}.
 Azure services have more diverse outage causes than GCP services.
 All outages of GCP services that lasted longer than twelve hours were caused by network errors; in contrast, network errors did not play a role in these types of outages for Azure services.
 The longest outages of Azure services were caused in approximately equal parts by code errors, and by configuration errors.

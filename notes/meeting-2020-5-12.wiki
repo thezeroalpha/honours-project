@@ -7,10 +7,10 @@ Tue May 12 11:11:40 2020
     * [X] is components-across-week.png useful?
     * [X] is components-by-severity.png useful?
     * not useful unless come up with a different representation
-* [ ] should we include AWS in causes-vs-duration-hr-ranges? excluded in other root cause plots...but could still be useful here
+* [X] should we include AWS in causes-vs-duration-hr-ranges? excluded in other root cause plots...but could still be useful here
     * no, remove
-* [ ] fig 6 - make facets horizontal.
-* [ ] fig 6 and 1 - step plot instead of line plot
+* [X] fig 6 - make facets horizontal.
+* [X] fig 6 and 1 - step plot instead of line plot
 * [ ] color consistency, adjust manually to each plot
     * colorhunt pastel colors, scale_fill_manual
 
@@ -25,7 +25,7 @@ matplotlib.rcParams.update({
     'text.usetex': True,
     'pgf.rcfonts': False,
 })
-theme_classic(base_size=12, bae_family='sans-serif')
+theme_classic(base_size=12, base_family='sans-serif')
 theme_classic(base_size=12, base_family='sans-serif') +\
 theme(figure_size=(4, 2),
           axis_text_y=element_text(margin={'r': 5}),
