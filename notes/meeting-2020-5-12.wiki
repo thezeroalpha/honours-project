@@ -1,0 +1,38 @@
+Tue May 12 11:11:40 2020
+* [X] root-causes-severity graph: no need to normalize. but sort by number of outages. and remove aws.
+* [X] outages across week causes - remove aws. make causes [configuration, load, other].
+* [X] causes of longer duration: <6, 6-12, >12
+* [X] severity vs users affected: longer abbrevs
+* [X] usefulness of graphs:
+    * [X] is components-across-week.png useful?
+    * [X] is components-by-severity.png useful?
+    * not useful unless come up with a different representation
+* [ ] should we include AWS in causes-vs-duration-hr-ranges? excluded in other root cause plots...but could still be useful here
+    * no, remove
+* [ ] fig 6 - make facets horizontal.
+* [ ] fig 6 and 1 - step plot instead of line plot
+* [ ] color consistency, adjust manually to each plot
+    * colorhunt pastel colors, scale_fill_manual
+
+Plot code:
+
+{{{python
+import matplotlib
+matplotlib.use("pgf")
+matplotlib.rcParams.update({
+    "pgf.texsystem": "pdflatex",
+    'font.family': 'sans-serif',
+    'text.usetex': True,
+    'pgf.rcfonts': False,
+})
+theme_classic(base_size=12, bae_family='sans-serif')
+theme_classic(base_size=12, base_family='sans-serif') +\
+theme(figure_size=(4, 2),
+          axis_text_y=element_text(margin={'r': 5}),
+          legend_box_spacing=0.01,
+          legend_box_margin=0,
+          legend_margin=0,
+          legend_position='top',
+          text=element_text(size=12)) +\
+}}}
+
