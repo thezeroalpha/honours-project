@@ -11,7 +11,7 @@ Tue May 12 11:11:40 2020
     * no, remove
 * [X] fig 6 - make facets horizontal.
 * [X] fig 6 and 1 - step plot instead of line plot
-* [ ] color consistency, adjust manually to each plot
+* [X] color consistency, adjust manually to each plot
     * colorhunt pastel colors, scale_fill_manual
 
 Plot code:

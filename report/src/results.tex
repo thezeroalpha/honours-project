@@ -54,7 +54,7 @@ We also analyze the root causes of outages, separated by the area of effect.
 Here we exclude those events that did not provide a cause (\result{np-range-users-vs-root-cause-cause}), a range (\result{np-range-users-vs-root-cause-range}), or the affected users (\result{np-range-users-vs-root-cause-users}).
 From \autoref{fig:causes vs aoes}, we conclude that configuration errors account for the majority of outages with the widest area of effect (all users in multiple regions).
 The second main cause of such outages are code errors, which interestingly do not play a major role in single-region outages, and do not appear as a cause of single-region outages affecting all users.
-Failing instances are mainly a cause of single-region outages, more so for outages that affect all users -- this is probably due to the fact that individual instances, nodes, or clusters are more localised. % TODO: requires citation or can't include this claim
+Failing instances are mainly a cause of single-region outages, more so for outages that affect all users -- this is probably due to the fact that individual instances, nodes, or clusters are localised in a single region \cite{awsRegionDocs}.
 From the available data, it seems that outages caused as a maintenance side effect only affect some users of the service, mostly in a single region.
 It also appears that outages caused by increased load more commonly affect only some users in a given range.
 The majority of outages caused by network issues affect some users in a single region, though they also play a somewhat significant role in the other area of effect categories (accounting for around 10\% of the outages in each category).
