@@ -4,11 +4,6 @@ Various helper functions
 
 # Colorblind-friendly colors from: http://www.cookbook-r.com/Graphs/Colors_(ggplot2)/#a-colorblind-friendly-palette
 import plotnine as p9
-colorblindPalette = ["#000000", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]
-disc_colorpalette = p9.scale_color_manual(values=colorblindPalette)
-disc_fillpalette = p9.scale_fill_manual(values=colorblindPalette)
-disc_fillpalette_larger = p9.scale_fill_brewer(type='qual', palette="Paired")
-cont_fillpalette = p9.scale_fill_gradient(low="blue", high="red")
 
 # Filter to include/exclude 'not provided' rows in series
 def filter_notprovided(series, keep=False):
@@ -97,3 +92,21 @@ def export_graph(graphname, df, columns, plot):
 
     (plot+p9.ggtitle("")).save("../report/src/images/"+graphname+".png")
     print(plot)
+
+def scheme(mode, *colors):
+    colordef = {'lred': '#fab7b7', 
+                'dred': '#d45079',
+                'dblue': '#6886c5', 
+                'lblue': '#b0deff', 
+                'dorange': '#f5b971',
+                'lorange': '#f6d186',
+                'dpurp': '#a6b1e1',
+                'lpurp': '#dcd6f7',
+                'lgreen': '#a8e6cf',
+                'blackish': '#39375b',
+                'seafoam': '#a0ffe6'}
+    scfun = p9.scale_fill_manual if mode == 'fill' else p9.scale_color_manual
+    if bool(colors):
+        return scfun([colordef[x] for x in colors])
+    else:
+        return scfun(list(colordef.values()))
