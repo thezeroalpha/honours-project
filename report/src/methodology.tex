@@ -1,2 +1,22 @@
 \section{Methodology}
+% include whatever is in the nsdi paper
+% data source - provider-reported data
 
+% original column - vendor
+% deduplicate based on service name, location, start time, end time. removes 330 events: 133 azure, 127 aws, 70 gcp
+% calculate duration in mins based on end time minus start time
+% based on start time, calculate year, and hour of week
+% only keep events in 2018 and later (why?)
+%
+% manually classify based on textual description:
+% - services: multiple, one
+% - severity: degraded performance, unavailable, visual
+% - range: multiple regions, single availability zone, single region
+%   - single availability zone is only AWS, so combine this with single region for analysis purposes (around 13 events)
+% - users: some, all
+% - cause: configuration error, internal api issue, third party, not provided, shock event, environmental conditions, code error, deployment task, internal network issue, unhealthy unit, maintenance side effect, increased load
+%   - aggregate into broader categories for analysis: code error, maintenance side effect, configuration error + deployment task, network (internal api issue, internal network issue), external (environmental conditions, shock event, third party), increased load, unknown, unhealthy unit
+% - duration: continuous, not provided, intermittent
+% - affected: user interface, external requests (apis), external network/connectivity, not provided, storage, internal network, certificates/licenses, nodes/devices/instances, internal communication interfaces, processing backend
+%
+% final number - 481 events (205 GCP, 144 AWS, 132 Azure)
