@@ -85,7 +85,9 @@ Outages that did not provide a root cause are also excluded (\result{np-causes-a
 From \autoref{fig:causes across week}, it seems that load-related outages tend to happen starting between midday on Wednesday and Thursday evening, with smaller peaks during the night on other days.
 Most outages caused by misconfiguration happen in the first half of the week, from mid-Monday until midnight on Thursday.
 This could perhaps be because large code changes are usually introduced during the first few days of the week. % TODO: claim needs supporting
-The major peaks for these outages generally occur around midnight; the reason for this could be that deployments happen during the night, when it is likely that fewer customers will be using the service. % TODO: need a source here
+The major peaks for these outages generally occur around midnight.
+The reason for this could be that deployments happen during the night, when it is likely that fewer customers will be using the service; as Langford et al. found \cite{langford2012}, there is a significant difference in traffic during the day and during the night.
+It could also be that changes are deployed during the day, but there is a delay before bugs appear.
 Outages related to other root causes generally occur during the weekdays, and there are only a few peaks during the weekend.
 It is important to note here that this is a relatively small dataset, and the trends observed in \autoref{fig:causes across week} could change if more data becomes available.
 
@@ -117,8 +119,16 @@ GCP also had failing computational units as a major cause for medium-duration ou
 \end{figure}
 
 Finally, we conduct correlation analysis on the various features of the data.
-The first statistic we consider is Cram\'{e}r's V, which measures association between two nominal variables.
-% TODO: information about Cramer's V and reasoning for choice, properly cited
+The first statistic we consider is Cram\'{e}r's V (also known as Cram\'{e}r's phi coefficient, written as $\phi_c$), which measures association between two nominal variables.
+It extends the phi coefficient to contingency tables larger than $2 \times 2$, and results in a value between 0 and 1, with 0 indicating no correlation.
+Cram\'{e}r's V is computed as:
+
+$$
+V = \sqrt{\frac{\chi^2}{n \times \min{(k-1, r-1)}}}
+$$
+
+where $r$ is the number of rows and $k$ the number of columns in the contingency table, $n$ is the number of observations, and $\chi^2$ is derived from Pearson's chi-squared test \cite{holmes1998}.
+
 Applying the measure to the dataset, we obtain a correlation matrix shown in \autoref{fig:cramers v}.
 We observe that there is no strong correlation between any of the features.
 Relative to the other values in the matrix, the component affected in the outage seems to be moderately correlated with the range of the outage (0.5), and with the users affected in the outage (0.49).
@@ -133,7 +143,16 @@ However, since the values are low, these results are inconclusive.
 \end{figure}
 
 We also calculate uncertainty coefficients, also known as Theil's U, for the features of the data; this is shown in a matrix in \autoref{fig:theils u}.
-% TODO: more information about uncertainty coefficient and reasoning for choice, cited properly
+The uncertainty coefficient of $y$ with respect to $x$, written as $U(y|x)$, shows how much information $x$ provides about $y$, and is a value between 0 and 1.
+A value of 0 indicates that $x$ gives no information about $y$, and a value of 1 that knowledge of $x$ completely predicts $y$.
+$U(y|x)$ is computed as:
+
+$$
+U(y|x) = \frac{H(y) - H(y|x)}{H(y)}
+$$
+
+where $H$ is entropy of a single distribution, and $H(y|x)$ is the entropy of $y$ conditional on $x$ \cite{press2007}.
+
 The results show no clear association, as the coefficients are low.
 However, the users affected in the outage could determine the affected component (0.34) and range of the outage (0.3).
 This seems to support the findings from \autoref{fig:cramers v}.
