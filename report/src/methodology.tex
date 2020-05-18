@@ -1,22 +1,36 @@
 \section{Methodology}
-% include whatever is in the nsdi paper
-% data source - provider-reported data
+% TODO: diagram the process, similar to the NSDI paper
+Cloud providers self-report information about service availability and failures through public status pages.
+We selected three of the largest worldwide cloud service providers: Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP).
+We use data scraped from their public status pages for self-reported failures \cite{awsFeed, gcpFeed, azureFeed} in the span of one year, Jan-Dec 2018.
+The pages were scraped every six hours, to avoid burdening the page host with more frequent scrapes and potentially incurring penalties.
+The raw dataset is approximately 576 KiB in size; the cleaned and processed dataset is around 187 KiB.
 
-% original column - vendor
-% deduplicate based on service name, location, start time, end time. removes 330 events: 133 azure, 127 aws, 70 gcp
-% calculate duration in mins based on end time minus start time
-% based on start time, calculate year, and hour of week
-% only keep events in 2018 and later (why?)
-%
-% manually classify based on textual description:
-% - services: multiple, one
-% - severity: degraded performance, unavailable, visual
-% - range: multiple regions, single availability zone, single region
-%   - single availability zone is only AWS, so combine this with single region for analysis purposes (around 13 events)
-% - users: some, all
-% - cause: configuration error, internal api issue, third party, not provided, shock event, environmental conditions, code error, deployment task, internal network issue, unhealthy unit, maintenance side effect, increased load
-%   - aggregate into broader categories for analysis: code error, maintenance side effect, configuration error + deployment task, network (internal api issue, internal network issue), external (environmental conditions, shock event, third party), increased load, unknown, unhealthy unit
-% - duration: continuous, not provided, intermittent
-% - affected: user interface, external requests (apis), external network/connectivity, not provided, storage, internal network, certificates/licenses, nodes/devices/instances, internal communication interfaces, processing backend
-%
-% final number - 481 events (205 GCP, 144 AWS, 132 Azure)
+We use Python 3.7.7, Pandas 1.0.3, NumPy 1.18.4, SciPy 1.4.1, and Pytz 2019.3 to process and analyze the extracted structured failure data.
+We first deduplicate the data based on the service name, failure location, event start time, and event end time.
+This removes 330 events in total: 133 from Azure, 127 from AWS, and 70 from GCP.
+We convert all reported event start times to the timezones appropriate to the region specified for the outage.
+We calculate the event duration in minutes based on the event start and end times.
+We also compute the year the event took place, as well as the hour of week (with hour 0 denoting midnight on Monday).
+We then filter the data, keeping only events occurring in or after 2018. % FIXME: why? why are there events before 2018?
+This yields a grand total of 481 events: 205 from GCP, 144 from AWS, and 132 from Azure.
+
+The providers include in their reports a textual description of the outage.
+This does not follow a specific format or standard, and must thus be manually analyzed for each event.
+We classify outages across several categories based on the description of the outage.
+The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, our classification is less detailed.
+
+The description provides information about the qualitative aspects of the outage: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage, and the components of the service affected in the outage.
+An outage can affect one or multiple services.
+The severity can be visual (i.e. performance is not affected, only visual feedback is incorrect), degradation of performance, or complete unavailability of the service.
+The range of an outage can be (in ascending order by geographical size) a single availability zone, a single region, or multiple regions.
+As the range of a single availability zone only applies to AWS services, outages that occurred in a single availability zone (13 events) were merged with those occurring in a single region, to simplify analysis.
+An outage can affect some users, or all users; this is meant to be understood in combination with the range of the outage (e.g. an outage may affect all users in a single region).
+The cause of an outage can be a code error, a side effect of maintenance, a configuration error, a network error, an external factor, increased load, or an unhealthy unit.
+A ``unit'' is not necessarily a physical (i.e. hardware) unit, but can be a virtual node, a cluster, etc.
+
+Each of these causes can be further separated into narrower categories.
+A configuration error can stem from a direct change to a configuration file, or can happen as part of a deployment task.
+A network error can indicate an internal API issue, or an internal network issue.
+An external factor can be the environmental conditions in the datacenter (e.g. higher temperatures or humidity), a shock event (e.g. a thunderstorm), or an issue caused by a third party.
+If one of these features is not stated in the description of a particular outage, we note that it was not provided for the outage.
