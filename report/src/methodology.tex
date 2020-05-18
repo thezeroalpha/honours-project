@@ -1,13 +1,19 @@
 \section{Methodology}
-% TODO: diagram the process, similar to the NSDI paper
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.5]{diagrams/process.png}
+  \caption{Data collection, extraction, and analysis process.}
+  \label{fig:process diagram}
+\end{figure}
 Cloud providers self-report information about service availability and failures through public status pages.
 We selected three of the largest worldwide cloud service providers: Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP).
+The whole workflow is shown in \autoref{fig:process diagram}.
 We use data scraped from their public status pages for self-reported failures \cite{awsFeed, gcpFeed, azureFeed} in the span of one year, Jan-Dec 2018.
-The pages were scraped every six hours, to avoid burdening the page host with more frequent scrapes and potentially incurring penalties.
+The pages were scraped every six hours, to avoid burdening the page host with more frequent scrapes and potentially incurring penalties (step 2 in \autoref{fig:process diagram}).
 The raw dataset is approximately 576 KiB in size; the cleaned and processed dataset is around 187 KiB.
 
 We use Python 3.7.7, Pandas 1.0.3, NumPy 1.18.4, SciPy 1.4.1, and Pytz 2019.3 to process and analyze the extracted structured failure data.
-We first deduplicate the data based on the service name, failure location, event start time, and event end time.
+We first deduplicate the data based on the service name, failure location, event start time, and event end time (step 4 in \autoref{fig:process diagram}).
 This removes 330 events in total: 133 from Azure, 127 from AWS, and 70 from GCP.
 We convert all reported event start times to the timezones appropriate to the region specified for the outage.
 We calculate the event duration in minutes based on the event start and end times.
@@ -17,7 +23,7 @@ This yields a grand total of 481 events: 205 from GCP, 144 from AWS, and 132 fro
 
 The providers include in their reports a textual description of the outage.
 This does not follow a specific format or standard, and must thus be manually analyzed for each event.
-We classify outages across several categories based on the description of the outage.
+We classify outages across several categories based on the description of the outage (step 5 in \autoref{fig:process diagram}).
 The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, our classification is less detailed.
 
 The description provides information about the qualitative aspects of the outage: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage, and the components of the service affected in the outage.
