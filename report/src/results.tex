@@ -145,6 +145,9 @@ However, since the values are low, these results are inconclusive.
 We also calculate uncertainty coefficients, also known as Theil's U, for the features of the data; this is shown in a matrix in \autoref{fig:theils u}.
 The uncertainty coefficient of $y$ with respect to $x$, written as $U(y|x)$, shows how much information $x$ provides about $y$, and is a value between 0 and 1.
 A value of 0 indicates that $x$ gives no information about $y$, and a value of 1 that knowledge of $x$ completely predicts $y$.
+Computing Theil's U clarifies the associations seen from Cram\'{e}r's V, as Cram\'{e}r's V is symmetric, but this is not necessarily true for the actual correlations.
+The uncertainty coefficient provides more information about the true relations between the different features \cite{zychlinski2018}.
+
 $U(y|x)$ is computed as:
 
 $$
@@ -153,7 +156,7 @@ $$
 
 where $H$ is entropy of a single distribution, and $H(y|x)$ is the entropy of $y$ conditional on $x$ \cite{press2007}.
 
-The results show no clear association, as the coefficients are low.
+The results in \autoref{fig:theils u} show no clear association, as the coefficients are low.
 However, the users affected in the outage could determine the affected component (0.34) and range of the outage (0.3).
 This seems to support the findings from \autoref{fig:cramers v}.
 Similarly, the affected component could determine the cause of the outage (0.28).
