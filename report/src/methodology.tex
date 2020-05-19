@@ -10,16 +10,16 @@ We selected three of the largest worldwide cloud service providers: Amazon Web S
 The whole workflow is shown in \autoref{fig:process diagram}.
 We use data scraped from their public status pages for self-reported failures \cite{awsFeed, gcpFeed, azureFeed} in the span of one year, Jan-Dec 2018.
 The pages were scraped every six hours, to avoid burdening the page host with more frequent scrapes and potentially incurring penalties (step 2 in \autoref{fig:process diagram}).
-The raw dataset is approximately 576 KiB in size; the cleaned and processed dataset is around 187 KiB.
+The raw dataset is approximately 522 KiB in size; the cleaned and processed dataset is around 172 KiB.
 
 We use Python 3.7.7, Pandas 1.0.3, NumPy 1.18.4, SciPy 1.4.1, and Pytz 2019.3 to process and analyze the extracted structured failure data.
-We first deduplicate the data based on the service name, failure location, event start time, and event end time (step 4 in \autoref{fig:process diagram}).
-This removes 330 events in total: 133 from Azure, 127 from AWS, and 70 from GCP.
+We first deduplicate the data based on the service name, failure location, and event start time, selecting the events with the longest duration (step 4 in \autoref{fig:process diagram}).
+This removes 400 events in total: 137 from Azure, 127 from AWS, and 136 from GCP.
 We convert all reported event start times to the timezones appropriate to the region specified for the outage.
 We calculate the event duration in minutes based on the event start and end times.
 We also compute the year the event took place, as well as the hour of week (with hour 0 denoting midnight on Monday).
-We then filter the data, keeping only events occurring in or after 2018. % FIXME: why? why are there events before 2018?
-This yields a grand total of 481 events: 205 from GCP, 144 from AWS, and 132 from Azure.
+We then filter the data, selecting events that occurred in the 2018 calendar year.
+This yields a grand total of 411 events: 139 from GCP, 144 from AWS, and 128 from Azure.
 
 The providers include in their reports a textual description of the outage.
 This does not follow a specific format or standard, and must thus be manually analyzed for each event.

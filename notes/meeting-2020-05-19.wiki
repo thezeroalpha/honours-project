@@ -1,5 +1,5 @@
 Tue May 19 15:21:44 2020
+* [X] add headings to indicate topics
+* [X] why filter for 2018? because just select a calendar year
+* [X] name, location, start time. if different end time, take event with longest end time
 * [ ] when there are more colors, use darker colors
-* [ ] name, location, start time. if different end time, take event with longest end time
-* [ ] why filter for 2018? just select a calendar year
-* [ ] add headings to indicate topics
