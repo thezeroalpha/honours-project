@@ -1,4 +1,8 @@
 \section{Results \& analysis}
+% "impact level": range + services
+% "area of effect": range + users
+
+\paragraph{Hourly and daily failure trends}
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.5]{outages-across-week.png}
@@ -11,68 +15,27 @@ GCP and AWS both display significant peaks at two points during the week: around
 AWS also shows an increase in outages in the afternoon/evening hours on Sunday.
 The data provided by Azure does not indicate any clear trends.
 
-\begin{figure}[h]
+\paragraph{Root causes of outages by impact level and vendor}
+\begin{figure}
   \centering
   \includegraphics[scale=0.5]{root-causes-by-severity.png}
-  \caption{Root causes of outages across varying severity levels, by vendor. (MR = multiple regions, SR = single region, 1 = one service, + = multiple services)}
+  \caption{Root causes of outages across varying impact levels, by vendor. (MR = multiple regions, SR = single region, 1 = one service, + = multiple services)}
   \label{fig:root causes by severity}
 \end{figure}
 
-We next analyse the distribution of outages across root causes and severity levels.
+We next analyse the distribution of outages across root causes and impact levels.
+We define the impact level of an outage as the combination of the number of services affected and the geographical range of the outage.
 We identify seven classes of root causes: UNIT (individual nodes, instances, or clusters, not necessarily hardware), NETW (related to the internal or external network), MAINT (side effects caused by maintenance), LOAD (increased load on the service), EXTERN (external causes, i.e. environmental or third-party), CODE (code errors/bugs), and CFG (configuration errors).
 We further separate the outages by vendor, indicated by the color of the bar in \autoref{fig:root causes by severity}.
 We do not include AWS, as we do not have sufficient data regarding root causes from AWS (a cause was only specified for 2.1\% of AWS events).
 Excluded from the plot are outages that did not provide a root cause (a total of \result{np-root-causes-by-severity-cause}), a range (\result{np-root-causes-by-severity-range}), or the number of affected services (\result{np-root-causes-by-severity-services}).
 
-The majority of outages across all levels of severity are caused by configuration errors.
+The majority of outages across all levels of impact are caused by configuration errors.
 For multi-regional outages, the configuration category accounts for the majority by a wide margin.
 On the other hand, for single-region outages, there are multiple leading causes: apart from configuration errors, outages affecting one service are also caused by increased load and failing instances, and those affecting more than one service are also caused by network errors and maintenance side effects.
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.5]{severity-vs-users-affected.png}
-  \caption{Severity of an outage and the users affected by the outage. (SU = some users, AU = all users, Cont = continuous, Interm = intermittent, Perf = performance degradation, Unavail = unavailable, Vis = visual)}
-  \label{fig:severity vs users}
-\end{figure}
-
-Next, we consider the users affected in an outage, depending on its area of effect.
-We define the area of effect of an outage as the affected users (all or some) and the range (single region or multiple regions).
-We exclude events that did not state the affected users (\result{np-severity-vs-users-affected-users}), range (\result{np-severity-vs-users-affected-range}), severity (\result{np-severity-vs-users-affected-severity}), or duration (\result{np-severity-vs-users-affected-duration}).
-The first immediate finding from \autoref{fig:severity vs users} is that the majority of outages result in one or more services becoming intermittently unavailable.
-For outages affecting all users, in a single region or in multiple regions, there is a higher proportion of outages that cause a service to be intermittently degraded or unavailable than for outages affecting some users.
-Furthermore, the majority of outages that resulted in a service being continuously unavailable (for some period of time) affected all users in multiple regions.
-When the performance of one or more services is degraded, it generally happens for a continuous period of time.
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.5]{range-users-vs-root-cause.png}
-  \caption{Root causes of outages at various areas of effect. (SU = some users, AU = all users, SR = single region, MR = multiple regions)}
-  \label{fig:causes vs aoes}
-\end{figure}
-
-We also analyze the root causes of outages, separated by the area of effect.
-Here we exclude those events that did not provide a cause (\result{np-range-users-vs-root-cause-cause}), a range (\result{np-range-users-vs-root-cause-range}), or the affected users (\result{np-range-users-vs-root-cause-users}).
-From \autoref{fig:causes vs aoes}, we conclude that configuration errors account for the majority of outages with the widest area of effect (all users in multiple regions).
-The second main cause of such outages are code errors, which interestingly do not play a major role in single-region outages, and do not appear as a cause of single-region outages affecting all users.
-Failing instances are mainly a cause of single-region outages, more so for outages that affect all users -- this is probably due to the fact that individual instances, nodes, or clusters are localised in a single region \cite{awsRegionDocs}.
-From the available data, it seems that outages caused as a maintenance side effect only affect some users of the service, mostly in a single region.
-It also appears that outages caused by increased load more commonly affect only some users in a given range.
-The majority of outages caused by network issues affect some users in a single region, though they also play a somewhat significant role in the other area of effect categories (accounting for around 10\% of the outages in each category).
-
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.5]{users-affected-by-vendor.png}
-  \caption{Area of effect of outages by vendor. (AU = all users, SU = some users, SR = single region, MR = multiple regions)}
-  \label{fig:aoe by vendor}
-\end{figure}
-
-We continue with the definition of the area of effect as the affected users and the range, and analyse the distribution of outages per vendor, in figure \autoref{fig:aoe by vendor}.
-We do not include events that are missing information about the users (\result{np-users-affected-by-vendor-users}) or the area of effect (\result{np-users-affected-by-vendor-range}).
-We observe that the range of the majority of outages depends on the vendor.
-The majority of GCP outages affect all users in multiple regions, while the majority of AWS outages affect all users in a single region.
-For Azure services, the outages mostly affect some users, with an approximately equal distribution between a single region and multiple regions.
-
-\begin{figure}[h]
+\paragraph{Failure distribution across the week, separated by root cause}
+\begin{figure}
   \centering
   \includegraphics[scale=0.5]{causes-across-week.png}
   \caption{Outages across the week, separated by root cause and vendor. (CONFIG = configuration error, LOAD = increased load, OTHER = other)}
@@ -91,14 +54,15 @@ It could also be that changes are deployed during the day, but there is a delay 
 Outages related to other root causes generally occur during the weekdays, and there are only a few peaks during the weekend.
 It is important to note here that this is a relatively small dataset, and the trends observed in \autoref{fig:causes across week} could change if more data becomes available.
 
-\begin{figure}[h]
+\paragraph{Root causes of outages, by duration and vendor}
+\begin{figure}
   \centering
   \includegraphics[scale=0.5]{causes-vs-duration-hr-ranges.png}
   \caption{Root causes of outages, separated by duration and vendor.}
   \label{fig:causes vs duration ranges}
 \end{figure}
 
-We separate the outages by duration, in three categories: short (outages lasting less than six hours, '< 6'), medium (six to twelve hours '6 to 12'), and long (more than twelve hours '> 12').
+We separate the outages by duration, in three categories: short (outages lasting less than six hours, '$<$ 6'), medium (six to twelve hours '6 to 12'), and long (more than twelve hours '$>$ 12').
 The outages are grouped by duration and vendor, such that the horizontal axis shows the proportion of outages for a specific duration category and vendor.
 We do not plot outages that did not specify a root cause (\result{np-causes-vs-duration-hr-ranges-cause}).
 All AWS outages that specified a cause were shorter than six hours, and were caused by external events (e.g. third party or environment).
@@ -111,7 +75,55 @@ For both GCP and Azure, increased load was a main factor in the short- and mediu
 For GCP, there were more medium-duration outages caused by increased load than short-duration outages; for Azure services, the proportion is approximately the same.
 GCP also had failing computational units as a major cause for medium-duration outages; this was not as prominent for Azure services, where failing units accounted for approximately the same proportion of short-duration outages as for medium-duration outages.
 
-\begin{figure}[h]
+\paragraph{Root causes of outages, by area of effect}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{range-users-vs-root-cause.png}
+  \caption{Root causes of outages at various areas of effect. (SU = some users, AU = all users, SR = single region, MR = multiple regions)}
+  \label{fig:causes vs aoes}
+\end{figure}
+
+We also analyze the root causes of outages, separated by the area of effect.
+We define the area of effect of an outage as the affected users (all or some) and the range (single region or multiple regions).
+Here we exclude those events that did not provide a cause (\result{np-range-users-vs-root-cause-cause}), a range (\result{np-range-users-vs-root-cause-range}), or the affected users (\result{np-range-users-vs-root-cause-users}).
+From \autoref{fig:causes vs aoes}, we conclude that configuration errors account for the majority of outages with the widest area of effect (all users in multiple regions).
+The second main cause of such outages are code errors, which interestingly do not play a major role in single-region outages, and do not appear as a cause of single-region outages affecting all users.
+Failing instances are mainly a cause of single-region outages, more so for outages that affect all users -- this is probably due to the fact that individual instances, nodes, or clusters are localised in a single region \cite{awsRegionDocs}.
+From the available data, it seems that outages caused as a maintenance side effect only affect some users of the service, mostly in a single region.
+It also appears that outages caused by increased load more commonly affect only some users in a given range.
+The majority of outages caused by network issues affect some users in a single region, though they also play a somewhat significant role in the other area of effect categories (accounting for around 10\% of the outages in each category).
+
+\paragraph{Severity and duration of failures by the area of effect}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{severity-vs-users-affected.png}
+  \caption{Severity of an outage and the users affected by the outage. (SU = some users, AU = all users, Cont = continuous, Interm = intermittent, Perf = performance degradation, Unavail = unavailable, Vis = visual)}
+  \label{fig:severity vs users}
+\end{figure}
+
+Next, we consider the severity and duration of an outage, depending on its area of effect.
+We exclude events that did not state the affected users (\result{np-severity-vs-users-affected-users}), range (\result{np-severity-vs-users-affected-range}), severity (\result{np-severity-vs-users-affected-severity}), or duration (\result{np-severity-vs-users-affected-duration}).
+The first immediate finding from \autoref{fig:severity vs users} is that the majority of outages result in one or more services becoming intermittently unavailable.
+For outages affecting all users, in a single region or in multiple regions, there is a higher proportion of outages that cause a service to be intermittently degraded or unavailable than for outages affecting some users.
+Furthermore, the majority of outages that resulted in a service being continuously unavailable (for some period of time) affected all users in multiple regions.
+When the performance of one or more services is degraded, it generally happens for a continuous period of time.
+
+\paragraph{Outages separated by area of effect and vendor}
+\begin{figure}
+  \centering
+  \includegraphics[scale=0.5]{users-affected-by-vendor.png}
+  \caption{Area of effect of outages by vendor. (AU = all users, SU = some users, SR = single region, MR = multiple regions)}
+  \label{fig:aoe by vendor}
+\end{figure}
+
+We continue with the definition of the area of effect as the affected users and the range, and analyse the distribution of outages per vendor, in figure \autoref{fig:aoe by vendor}.
+We do not include events that are missing information about the users (\result{np-users-affected-by-vendor-users}) or the area of effect (\result{np-users-affected-by-vendor-range}).
+We observe that the range of the majority of outages depends on the vendor.
+The majority of GCP outages affect all users in multiple regions, while the majority of AWS outages affect all users in a single region.
+For Azure services, the outages mostly affect some users, with an approximately equal distribution between a single region and multiple regions.
+
+\paragraph{Correlation analysis (Cram\'{e}r's V)}
+\begin{figure}
   \centering
   \includegraphics[scale=0.5]{cramers-v.png}
   \caption{Correlation matrix (Cram\'{e}r's V)}
@@ -135,14 +147,15 @@ Relative to the other values in the matrix, the component affected in the outage
 There may also be a slight correlation between the cause of the outage and the range of the outage (0.38), as well as with the users affected in the outage (0.31).
 However, since the values are low, these results are inconclusive.
 
-\begin{figure}[h]
+\paragraph{Association analysis with the uncertainty coefficient (Theil's U)}
+\begin{figure}
   \centering
   \includegraphics[scale=0.5]{theils-u.png}
   \caption{Uncertainty coefficient matrix (Theil's U)}
   \label{fig:theils u}
 \end{figure}
 
-We also calculate uncertainty coefficients, also known as Theil's U, for the features of the data; this is shown in a matrix in \autoref{fig:theils u}.
+We calculate uncertainty coefficients, also known as Theil's U, for the features of the data; this is shown in a matrix in \autoref{fig:theils u}.
 The uncertainty coefficient of $y$ with respect to $x$, written as $U(y|x)$, shows how much information $x$ provides about $y$, and is a value between 0 and 1.
 A value of 0 indicates that $x$ gives no information about $y$, and a value of 1 that knowledge of $x$ completely predicts $y$.
 Computing Theil's U clarifies the associations seen from Cram\'{e}r's V, as Cram\'{e}r's V is symmetric, but this is not necessarily true for the actual correlations.

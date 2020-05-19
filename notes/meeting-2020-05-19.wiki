@@ -1,0 +1,5 @@
+Tue May 19 15:21:44 2020
+* [ ] when there are more colors, use darker colors
+* [ ] name, location, start time. if different end time, take event with longest end time
+* [ ] why filter for 2018? just select a calendar year
+* [ ] add headings to indicate topics
