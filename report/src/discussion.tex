@@ -1,2 +1,21 @@
-\section{Discussion}
+\section{Threats to Validity}
+Having presented the results and analysis, this section discusses the main limitations of the study.
 
+\paragraph{1. Manual classification of data points.}
+Due to the lack of structure or standard format among the failure descriptions, all events had to be classified manually across different categories (step 5 in \autoref{fig:process diagram}).
+Though the classification was conducted diligently and checked multiple times, such a process is vulnerable to human error.
+Furthermore, by relying on our interpretation of the descriptions for classification, we introduce an element of subjectivity in the dataset.
+It is possible that some events are misclassified, which would negatively affect the validity of our results.
+Unfortunately, because of the aforementioned lack of structure in the reports and insufficient tools for analysis of such data, this is currently unavoidable.
+
+\paragraph{2. Lack of available data.}
+In our analysis, we use a dataset with a relatively small amount of events.
+To draw more significant and valid conclusions, a much larger dataset would be needed.
+As no such public repository of data is currently available, we do not have a way to obtain these data.
+Moreover, for some analyses, we exclude a few data points due to insufficient information.
+Such selective cleaning may lead to unintended consequences or biases in our results.
+
+\paragraph{3. Heuristic processing errors.}
+For AWS and Azure failures, we extract the event start and end time from textual descriptions.
+We use heuristic methods based on sentence structures.
+Despite taking the utmost care, there is a non-zero possibility that we might have missed or wrongly attributed certain failures.

@@ -21,12 +21,13 @@ We also compute the year the event took place, as well as the hour of week (with
 We then filter the data, selecting events that occurred in the 2018 calendar year.
 This yields a grand total of 411 events: 139 from GCP, 144 from AWS, and 128 from Azure.
 
-The providers include in their reports a textual description of the outage.
-This does not follow a specific format or standard, and must thus be manually analyzed for each event.
+The providers also include in their reports a textual description of the outage.
+The description does not follow a specific format or standard, and must thus be manually analyzed for each event.
 We classify outages across several categories based on the description of the outage (step 5 in \autoref{fig:process diagram}).
 The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, our classification is less detailed.
 
-The description provides information about the qualitative aspects of the outage: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage, and the components of the service affected in the outage.
+The description provides information about the qualitative aspects of the outage.
+We identify seven such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage, and the components of the service affected in the outage.
 An outage can affect one or multiple services.
 The severity can be visual (i.e. performance is not affected, only visual feedback is incorrect), degradation of performance, or complete unavailability of the service.
 The range of an outage can be (in ascending order by geographical size) a single availability zone, a single region, or multiple regions.
