@@ -101,6 +101,7 @@ def scheme(mode, *colors):
                 'dorange': '#f5b971',
                 'lorange': '#f6d186',
                 'dpurp': '#a6b1e1',
+                'yellow': '#fcf876',
                 'lpurp': '#dcd6f7',
                 'lgreen': '#a8e6cf',
                 'blackish': '#39375b',
