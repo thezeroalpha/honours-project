@@ -1,0 +1,6 @@
+Tue May 26 14:07:16 2020
+* [ ] for important causes, give 1-2 examples
+* [ ] increase fig 5 - font size should be universal across paper
+* [ ] more examples for some/all users, what does that mean in practice
+* [ ] measures association between ~~nominal~~ variables
+* [ ] fig 1 is too bright blue

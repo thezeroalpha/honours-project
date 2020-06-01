@@ -1,4 +1,21 @@
 \section{Introduction}
 Cloud computing as a paradigm has become a de-facto standard for services and applications.
-We build our modern distributed services in an increasingly `cloud-native' manner, based on cloud-computing abstractions (IaaS, SaaS, etc.) and technologies (VMs, containers, `serverless' functions, etc.).
-In fact, many organisations that are essential for society (such as banking or
+We build our modern distributed services in an increasingly `cloud-native' manner, based on cloud-computing abstractions (IaaS, SaaS, etc.) and technologies (VMs, containers, functions, etc.).
+These `cloud services' can be client-facing (such as the Netflix web application), or on the back-end (e.g. Amazon Simple Storage Service).
+In fact, many organisations that are essential for society (such as banking or healthcare) rely on cloud services which are invisible to end users \cite{armbrust2010,dean2015}.
+But how reliable are these services?
+
+Though cloud services are expected to always be available, they can fail in a variety of ways.
+These failures can range from mild, such as a single-region outage affecting some users, to severe, such as a multi-region outage of multiple services.
+Client-facing services are prone to upstream errors, and can fail when any one of their dependencies fails \cite{steen2016}.
+Such a failure results service downtime, which can lead to disruption of critical services \cite{emergencyOnCloud,healthcareCrash}, data loss \cite{tencentDataLoss}, and other issues.
+
+Therefore, it is important to understand how cloud services fail.
+If we can understand the characteristics of these failures, we can potentially discern reasons for the failures.
+This can aid cloud providers in the prevention of outages, and allow them to further increase the availability and fault-tolerance of their services.
+
+% previous work: Gunawi et al., plus other papers. mention here what they did and how this is different i guess
+
+The main contribution of this study is a systematic analysis of provider-reported failures during one calendar year.
+We develop a framework for conducting such an analysis, which can be used in future studies.
+For me, the main contribution of this research was learning how to process and clean a dataset, and how to iteratively develop a methodology to analyze the dataset.
