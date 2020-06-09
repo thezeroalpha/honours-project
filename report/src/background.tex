@@ -1,2 +1,23 @@
 \section{Background information}
+\paragraph{Service architecture}
+There are three major cloud service providers: Amazon (Amazon Web Services, AWS), Microsoft (Azure), and Google (Google Cloud Platform, GCP) \cite{dignan2020, jones2020}.
+A provider makes available a number of services to its customers, and the customers are free to choose which services they want to use for their application.
+A service is not tied to one physical location, but can run in any of the regions offered by the provider, and can potentially span multiple regions.
+The geographical location of the service can often also be configured by the client.
+A particular service may depend on other services offered by the provider.
+For example, if a client decides to use AWS Elastic Beanstalk (EBS), they will also be relying on a number of other AWS resources, such as the Amazon Elastic Compute Cloud (EC2) and Amazon Simple Storage Service (S3) \cite{awsFaq}.
+Each of these service dependencies may itself have other dependencies, which results in a complex dependency graph, where the failure of a single service may result in the outage of multiple other services.
+Therefore, service availability is of utmost importance for cloud providers.
 
+\paragraph{Terms \& definitions}
+We define a service \textit{failure (event)} or \textit{outage} as a period of time where the service is not functioning as expected.
+The \textit{expected functionality} of a service is defined both explicitly in Service Level Agreements, and implicitly by the assumptions of clients and end users.
+During a failure, a service may become \textit{unavailable}, which occurs when one or more users cannot access the service.
+However, many services utilize fault-tolerance techniques, and thus do not fail entirely, but instead experience \textit{performance degradation}.
+This is when there is an increase in the latency of the service, or in the error rates of requests made to the service.
+A service may fail in a single region, or in multiple regions.
+In the case of AWS, a failure may be restricted to a single availability zone inside of a region.
+Due to the interdependence of services, the failure of one service can cause failures of upstream services, resulting in a \textit{multi-service} failure.
+A failure can have a varying \textit{area of effect}, which we define as the affected users and the geographical range of the failure (for example, some users in a single region).
+We define the \textit{impact level} of an outage as the the number of affected services, and the geographical range of the outage (for example, one service in a single region).
+The \textit{duration} of an failure is the period of time between the start of a reported failure and the end of the failure.

@@ -1,4 +1,6 @@
 \section{Methodology}
+\subsection{Data extraction \& processing}
+
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.5]{diagrams/process.png}
@@ -17,27 +19,30 @@ We first deduplicate the data based on the service name, failure location, and e
 This removes 400 events in total: 137 from Azure, 127 from AWS, and 136 from GCP.
 We convert all reported event start times to the timezones appropriate to the region specified for the outage.
 We calculate the event duration in minutes based on the event start and end times.
-We also compute the year the event took place, as well as the hour of week (with hour 0 denoting midnight on Monday).
+We also compute the year the event took place, as well as the hour of the week (with hour 0 denoting midnight on Monday).
 We then filter the data, selecting events that occurred in the 2018 calendar year.
 This yields a grand total of 411 events: 139 from GCP, 144 from AWS, and 128 from Azure.
 
-The providers also include in their reports a textual description of the outage.
+\subsection{Failure classification}
+Service providers include in their reports a textual description of the outage.
 The description does not follow a specific format or standard, and must thus be manually analyzed for each event.
 We classify outages across several categories based on the description of the outage (step 5 in \autoref{fig:process diagram}).
 The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, our classification is less detailed.
 
 The description provides information about the qualitative aspects of the outage.
-We identify seven such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage, and the components of the service affected in the outage.
-An outage can affect one or multiple services.
-The severity can be visual (i.e. performance is not affected, only visual feedback is incorrect), degradation of performance, or complete unavailability of the service.
-The range of an outage can be (in ascending order by geographical size) a single availability zone, a single region, or multiple regions.
+We identify six such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage.
+An outage can affect one or multiple services; we assume that only one service is affected (namely, the reported service), unless the provider explicitly states otherwise in the description.
+The severity can be strictly a visual error (i.e. performance is not affected, only visual feedback is incorrect), service performance degradation, or complete service unavailability.
+The range of an outage can be limited to (in ascending order of geographical size) a single availability zone, a single region, or multiple regions.
 As the range of a single availability zone only applies to AWS services, outages that occurred in a single availability zone (13 events) were merged with those occurring in a single region, to simplify analysis.
-An outage can affect some users, or all users; this is meant to be understood in combination with the range of the outage (e.g. an outage may affect all users in a single region).
+An outage can affect some users, or all users; this is understood in combination with the range of the outage (e.g. an outage may affect all users in a single region).
+An event is assumed to affect all users of the service, unless the provider explicitly reports that only some users are affected.
 The cause of an outage can be a code error, a side effect of maintenance, a configuration error, a network error, an external factor, increased load, or an unhealthy unit.
 A ``unit'' is not necessarily a physical (i.e. hardware) unit, but can be a virtual node, a cluster, etc.
 
-Each of these causes can be further separated into narrower categories.
+Some of these causes can be further separated into narrower categories.
 A configuration error can stem from a direct change to a configuration file, or can happen as part of a deployment task.
 A network error can indicate an internal API issue, or an internal network issue.
 An external factor can be the environmental conditions in the datacenter (e.g. higher temperatures or humidity), a shock event (e.g. a thunderstorm), or an issue caused by a third party.
-If one of these features is not stated in the description of a particular outage, we note that it was not provided for the outage.
+
+If one of features is not stated in the description of a particular outage, we note that information about it was not provided for the outage.

@@ -90,7 +90,7 @@ def export_graph(graphname, df, columns, plot):
             f.write(outstr)
         print(f'- {c}: {outstr}')
 
-    (plot+p9.ggtitle("")).save("../report/src/images/"+graphname+".png")
+    (plot+p9.ggtitle("")).save("../report/src/images/"+graphname+".png", dpi=300)
     print(plot)
 
 def scheme(mode, *colors):
@@ -108,6 +108,6 @@ def scheme(mode, *colors):
                 'seafoam': '#a0ffe6'}
     scfun = p9.scale_fill_manual if mode == 'fill' else p9.scale_color_manual
     if bool(colors):
-        return scfun([colordef[x] for x in colors])
+        return scfun([(colordef[x] if x in colordef else x) for x in colors])
     else:
         return scfun(list(colordef.values()))
