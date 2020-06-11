@@ -1,5 +1,5 @@
 \documentclass[12pt,notitlepage]{article}
-\usepackage[a4paper, top=0.6in, left=0.6in, right=0.6in, bottom=0.6in]{geometry}
+\usepackage[a4paper, top=0.7in, left=0.7in, right=0.7in, bottom=0.7in]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[english]{babel}
 \usepackage{hyperref}
@@ -15,12 +15,23 @@
 \captionsetup{width=0.8\textwidth,font+=it}
 \addbibresource{references.bib}
 
+\def\theauthor{Alexander Balgavy (2619644)}
+\def\thetitle{How Do Cloud Services Fail? \\ \vspace{0.5em} A Study of Provider-Reported Data}
+\def\thedate{\today}
+\def\theinstitution{Vrije Universiteit Amsterdam}
+\def\thesubject{Honours Programme, Project Report}
+
 \newcommand{\result}[1]{\input{numbers/#1}\unskip}
 \begin{document}
   \input{titlepage}
 
   \begin{abstract}
-    This is an abstract.
+    Cloud computing is the paradigm that powers many of the services we use daily.
+    We expect these services to be continuously available, but in reality, many of them fail.
+    In this work, we analyze data collected from the public status pages of three leading cloud service providers.
+    We carry out a classification and labelling of failure events during a one-year time span.
+    Based on this classification, we observe meaningful patterns to answer the question of how cloud services fail.
+    For example, we find that the majority of outages are caused by configuration errors, and that outages caused by increased load more often affect only some users in the range of the outage.
   \end{abstract}
 
   \input{introduction}
@@ -30,7 +41,6 @@
   \input{discussion}
   \input{related}
   \input{conclusion}
-  % mention in limitations: "the self-reporting process raises the potential for bias"
 
   \printbibliography
 

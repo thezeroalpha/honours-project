@@ -10,11 +10,13 @@ These failures can range from mild, such as a single-region outage affecting som
 Furthermore, client-facing services are prone to upstream errors, and can fail when any one of their dependencies fails \cite{steen2016}.
 Such a failure results service downtime, which can lead to disruption of critical services \cite{emergencyOnCloud,healthcareCrash}, data loss \cite{tencentDataLoss}, and other issues.
 
+Moreover, many popular cloud services are built on top of other services.
+For example, Netflix uses Amazon Web Services to host their applications, with around 100 000 instances per day \cite{awsNetflixStudy}.
+Due to this, a failure of one service can easily lead to the failure of many other services \cite{whittaker2013,azureXboxOutage2013,azureXboxOutage2014}.
+
 Therefore, it is important to understand how cloud services fail.
 If we can understand the characteristics of these failures, we can potentially discern reasons for the failures.
 This can aid cloud providers in the prevention of outages, and allow them to further increase the availability and fault-tolerance of their services.
-
-% previous work: Gunawi et al., plus other papers. mention here what they did and how this is different i guess
 
 The main contribution of this study is a systematic analysis of provider-reported failures during one calendar year.
 We develop a framework for conducting such an analysis, which can be used in future studies.

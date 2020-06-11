@@ -1,2 +1,25 @@
 \section{Related work}
+Having presented and discussed our results, we examine previous work done in the field.
 
+One similar study is that of Gunawi et al. \cite{gunawi2016}, who analyze the availability of popular cloud services during a time period of seven years.
+They examine services for online chat (e.g. WhatsApp), e-commerce (e.g. Amazon.com), email (e.g. GMail), SaaS (e.g. Salesforce), video streaming (e.g. Netflix), and others.
+They collect data from news headlines, and from the providers' public post-mortem reports (published after the failure event).
+Similarly to our study, they manually tag the outages with metadata.
+This metadata describes the root causes, impacts, fixes, downtime, type (planned or unplanned), and service scope of each outage.
+Due to the nature of their dataset, they are able to extract more detail in some metadata categories, such as root causes.
+They find that almost 50\% of the services they analyze experience an average of three or more outages per year, and 25 services do not reach 99.9\% uptime.
+These outages do not decrease as the service matures; rather, as a service matures, it becomes more popular, and thus need to handle more users and increases in complexity.
+Perhaps complementary to our findings regarding root causes of outages, fixing software is a major fix procedure category in their results, accounting for 22\% of all outages.
+Their analysis of root causes shows that to ensure that cloud services do not have a single point of failure, perfection is required along the whole failure recovery chain.
+They also conduct a detailed analysis of root causes of outages.
+
+Another related study focuses on popular cloud systems, particularly on those generally not seen by end users \cite{gunawi2014}.
+These include Hadoop MapReduce, Hadoop File System, HBase, Cassandra, ZooKeeper, and Flume.
+The aim of the study is to characterise the bugs present in cloud systems.
+Gunawi et al. collect data from issue repositories maintained by the development projects of the aforementioned systems.
+The issues are generally submitted by the developer or user community of the system.
+The authors select issues submitted over a period of three years, and analyze patches and developer responses for the issues.
+They conduct a manual classification of the issues for each service, applying metadata labels related to the aspect of the issue (reliability, performance, availability, etc.), hardware type, failure mode (stop, corrupt, or ``limp''), and bug scope (single machine, multiple machines, or a whole cluster).
+They find that 8\% of bugs are unique to cloud systems, and that even though there are software measures in place, 13\% of issues are still caused by hardware failures.
+Their results also suggest that cascades of failures can occur in subtle ways from a ``killer bug'', which is perhaps similar to how failures can cascade across services in our analysis.
+Finally, the largest category of software bugs in their results consists of those that are logic-specific, which complements our findings.
