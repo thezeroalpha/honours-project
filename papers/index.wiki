@@ -1,0 +1,176 @@
+= HPC =
+== provider-reported ==
+- [[local:chen2014.pdf]]
+    - *target:* large-scale system (Google cloud cluster)
+    - *data:* provider-reported (workload trace)
+    - *purpose:* to improve the understanding of failures in compute clouds. investigates the characteristics of failed and killed jobs in Google’s production cloud system
+- [[local:elsayed2017.pdf]]
+    - *target:* large-scale production systems (multi-purpose Google cluster, Hadoop cluster, HPC cluster at Los Alamos National Labs)
+    - *data:* provider-reported (traces)
+    - *purpose:* to identify patterns in the behaviour of unsuccessful jobs across different clusters and investigate possible root causes behind job termination. we investigate how and why large-scale jobs terminate unsuccessfully in parallel clusters
+- [[local:liang2006.pdf]]
+    - *target:* HPC (BlueGene/L)
+    - *data:* provider-reported (RAS event logs)
+    - *purpose:* investigated the characteristics of fatal failure events, as well as the correlation between fatal events and non-fatal events.
+- [[local:zheng2011.pdf]]
+    - *target:* HPC (Blue Gene/P)
+    - *data:* provider-reported (RAS logs, job logs)
+    - *purpose:* better understanding failure patterns and system/user behavior.
+- [[local:kavulya2010.pdf]]
+    - *target:* HPC (M45 supercomputing cluster)
+    - *data:* provider-reported (MapReduce logs)
+    - *purpose:* characterize resource utilization patterns, job patterns, and sources of failures. aid other researchers in understanding the performance and failure characteristics of Hadoop jobs running in large-scale real-world clusters for different, often unknown, workloads.
+- [[local:gupta2015.pdf]]
+    - *target:* HPC (Titan supercomputer)
+    - *data:* provider-reported (direct testing)
+    - *purpose:* examine the spatial characteristics and behavior of system failures. investigate the interaction between spatial and temporal characteristics of failures
+- [[local:gupta2017.pdf]]
+    - *target:* HPC (Jaguar XT4, XT5, XT6, Titan, Eos)
+    - *data:* provider-reported
+    - *purpose:* compare and contrast the reliability characteristics of multiple large- scale HPC production systems.
+- [[local:di2019.pdf]]
+    - *target:* HPC (IBM Blue Gene/Q Mira)
+    - *data:* provider-reported (reliability availability serviceability (RAS) log, task execution log, job scheduling log, IO behavior log)
+    - *purpose:* study the impact of the system’s events on the jobs’ execution in order to understand the system’s reliability from the perspective of jobs and users.
+- [[local:elsayed2013.pdf]]
+    - *target:* HPC clusters at Los Alamos National Lab
+    - *data:* provider-reported (field data made available by Los Alamos National Lab)
+    - *purpose:* to study the impact of a diverse set of factors on the reliability of HPC systems. looks into correlations between failures, including questions such as which failure types are most likely to generate follow-up failures.
+- [[local:martino2014.pdf]]
+    - *target:* HPC (Blue Waters supercomputer)
+    - *data:* provider-reported
+    - *purpose:* analysis of failures and their impact, characterisation and root causes
+- [[local:schroeder2010.pdf]]
+    - *target:* 22 HPC systems at Los Alamos National Laborator, anonymous supercomputing site
+    - *data:* failure data from providers
+    - *purpose:* analyze failure data for HPC
+- [[local:javadi2013.pdf]]
+    - *target:* HPC, internet operation, online services
+    - *data:* failure traces from parallel and distributed systems
+    - *purpose:* created the Failure Trace Archive (FTA)—an online, public repository of failure traces. apply toolbox to nine falure traces, present comparative analysis of failures. We defined a standard trace format, and showed its suitability by converting traces of 20 diverse distributed systems into this format.
+- [[local:schroeder2007.pdf]]
+    - *target:* HPC & internet services
+    - *data:* field-gathered disk replacement data from large-scale production systems, consists primarily of hardware replacement logs
+    - *purpose:* present and analyze field-gathered disk replacement data from a number of large production systems
+
+== user-reported ==
+- [[local:gray1986.pdf]]
+    - *target:* large-scale system
+    - *data:* user-reported
+    - *purpose:* analyzed the causes of system failures reported to Tandem over a seven-month period.
+
+
+= services =
+== provider-reported ==
+- [[local:oppenheimer2003.pdf]]
+    - *target:* online services (Online, Content, ReadMostly)
+    - *data:* provider (post-mortem reports of user-visible failures from three large-scale Internet services)
+    - *purpose:* causes of their failures and the (potential) effectiveness of various techniques for pre- venting and mitigating service failure.
+- [[local:ford2010.pdf]]
+    - *target:* cloud storage systems (Google's main storage infrastructure)
+    - *data:* provider
+    - *purpose:* characterise data availability properties
+- [[local:schroeder2007.pdf]]
+    - *target:* HPC & internet services
+    - *data:* field-gathered disk replacement data from large-scale production systems, consists primarily of hardware replacement logs
+    - *purpose:* present and analyze field-gathered disk replacement data from a number of large production systems
+- [[local:javadi2013.pdf]]
+    - *target:* HPC, internet operation, online services
+    - *data:* failure traces from parallel and distributed systems
+    - *purpose:* created the Failure Trace Archive (FTA)—an online, public repository of failure traces. apply toolbox to nine falure traces, present comparative analysis of failures. We defined a standard trace format, and showed its suitability by converting traces of 20 diverse distributed systems into this format.
+- [[local:garraghan2014.pdf]]
+    - *target:* large-scale production cloud environment (Google Cloud)
+    - *data:* provider-reported (Google Cloud trace log)
+    - *purpose:* analysis of failure data of a large-scale production Cloud environment, includes a study of failure and repair times and characteristics for both Cloud workloads and servers.
+- [[local:yalagandula2004.pdf]]
+    - *target:* large distributed systems (PlanetLab, Domain Name System, over 100 web servers)
+    - *data:* provider-reported (trace analysis)
+    - *purpose:* to answer several subtle questions re- garding machine failure characteristics.
+- [[local:li2013.pdf]]
+    - *target:* large-scale system (SCOPE)
+    - *data:* provider-reported (debugging statistics from MS Bing)
+    - *purpose:* comprehensive characteristic study, investigating not only major failure types, failure sources, and fixes, but also current debugging practice. first comprehensive characteristic study on failures and fixes of state-of-the-art production data-parallel programs for the purpose of failure reduction and fixing in future development
+- [[local:zhou2015.pdf]]
+    - *target:* cloud platform (MS ProductA)
+    - *data:* provider (2,196 emails and 188 incident tracking records)
+    - *purpose:* empirical study on the service quality issues, investigate the common symptoms, causes and mitigation of service quality issues in Big Data platform.
+== user-reported ==
+- [[local:frattini2013.pdf]]
+    - *target:* open source cloud platform (Apache Virtual Computing Lab)
+    - *data:* bug reports
+    - *purpose:* analysis of failure software component and type on representative open source cloud platform
+- [[local:yuan2014.pdf]]
+    - *target:* services (Cassandra, HBase, HDFS, MapReduce, Redis)
+    - *data:* user-reported failures that occurred
+    - *purpose:* understanding how one or multiple faults eventually evolve into a user-visible failure
+- [[local:iosup2011.pdf]]
+    - *target:* AWS and Google App Engine
+    - *data:* use long-term performance traces from CloudStatus
+    - *purpose:* analyze dependability of services. trace-based simulation to assess impact of observed variability on large scale applictations (job execution in sci computing, virtual goods trading in social networks, state management in social gaming)
+- [[local:palankar2008.pdf]]
+    - *target:* amazon s3
+    - *data:* user-reported (own nodes, planetlab, traces from DZero)
+    - *purpose:* evaluate S3's ability to provide storage support to large-scale science projects from a cost, availability, and performance perspective. identify a set of additional functionalities that storage services targeting data-intensive science applications should support.
+- [[local:fonseca2010.pdf]]
+    - *target:* MySQL
+    - *data:* user-reported (MySQL bug report database)
+    - *purpose:* present a study of concurrency bugs in MySQL, a widely used database server
+- [[local:benson2010.pdf]]
+    - *target:* service (large IaaS provider)
+    - *data:* user (message threads in forum)
+    - *purpose:* investigation into the problems encountered by users and the methods utilized by the cloud support’s staff to resolve these problems. aim to develop an understanding of the nature of problems experienced by customers of an IaaS cloud, along with their experience in resolving these problems using the forum-based support that is common in compute cloud service
+- [[local:jiang2008.pdf]]
+    - *target:* storage systems
+    - *data:* customer-reported (Network Appliance AutoSupport Database storage logs)
+    - *purpose:* analyzes the failure characteristics of stor- age subsystems, including disks and other system com- ponents, based on a significant amount of field data col- lected from customers.
+- [[local:yin2011.pdf]]
+    - *target:* large-scale systems (commercial storage system), services (CentOS, MySQL, Apache HTTP Server, OpenLDAP)
+    - *data:* user-reported (user issues database)
+    - *purpose:* conduct a real-world misconfiguration characteristic study.
+== both ==
+- [[local:ostermann2008.pdf]]
+    - *target:* amazon ec2
+    - *data:* provider (traces) and user (benchmarks, workloads)
+    - *purpose:* evaluation of the usefulness of the current cloud computing services for scientific computing, analyze performance, compare using long-term traces the performance characteristics and cost models of clouds with those of other platforms accessible to scientists.
+- [[local:sahoo2010.pdf]]
+    - *target:* services (Squid, Apache, Subversion, MySQL, OpenSSH Secure Shell Server, Tomcat Application Server)
+    - *data:* provider (committed bug fixes) and user (public bug databases)
+    - *purpose:* conduct a thorough empirical study of several key characteristics of bugs that affect reproducibility at the pro- duction site
+
+
+= network =
+== provider-reported ==
+- [[local:gill2011.pdf]]
+    - *target:* datacenter networks
+    - *data:* provider-reported (error logs from thousands of network devices across tens of geographically distributed data centers)
+    - *purpose:* first large-scale analysis of failures in a data cen- ter network.
+- [[local:banerjee2015.pdf]]
+    - *target:* network
+    - *data:* provider-reported (operator-owned mailing list)
+    - *purpose:* first-of-its-kind longitudinal analysis of Internet outages from 2006 to 2013
+- [[local:turner2010.pdf]]
+    - *target:* network
+    - *data:* router configs, syslogs, email logs
+    - *purpose:* we present a methodology for inferring and analyzing the link failure history of a network absent dedicated monitoring infrastructure.
+
+= machines (physical & virtual) =
+== provider-reported ==
+- [[local:vishwanath2010.pdf]]
+    - *target:* hardware in large datacenters
+    - *data:* provider-reported (tickets)
+    - *purpose:* first attempt to study server failures and hardware repairs for large datacenters. detailed analysis of failure characteristics as well as a preliminary analysis on failure predictors.
+- [[local:nightingale2011.pdf]]
+    - *target:* consumer PCs hardware
+    - *data:* providers (Windows Error Reporting system)
+    - *purpose:* first large-scale analysis of hardware failure rates on a million consumer PCs
+- [[local:rosa2015.pdf]]
+    - *target:* Google datacenter
+    - *data:* job traces collected from schedulers and machines
+    - *purpose:* study three types of unsuccessful executions, namely fail, kill, and eviction. identify their resource waste, impacts on application performance, and root causes. provide a better understanding of the performance impact of unsuccessful executions, their characteristics, and their relationship with application and machine attributes in multi-purpose and multi-tenancy datacenters.
+
+== both ==
+- [[local:birke2014.pdf]]
+    - *target:* physical and virtual machines in commercial datacenters
+    - *data:* provider (performance measures) and user (problem tickets)
+    - *purpose:* large-scale analysis comparing failures of physical machines (PMs) and virtual machines. first extensive analysis of VM failure analysis in commercial datacenters in comparison with PMs.
+

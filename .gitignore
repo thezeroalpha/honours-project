@@ -431,3 +431,4 @@ TSWLatexianTemp*
 *.glstex
 
 # End of https://www.gitignore.io/api/latex
+papers/*.pdf
