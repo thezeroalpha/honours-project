@@ -46,7 +46,7 @@ We do not include AWS outages here, due to a lack of specified root causes.
 Outages that did not provide a root cause are also excluded (\result{np-causes-across-week-cause}).
 From \autoref{fig:causes across week}, it seems that load-related outages tend to happen starting between midday on Wednesday and Thursday evening, with smaller peaks during the night on other days.
 Most outages caused by misconfiguration happen in the first half of the week, from mid-Monday until midnight on Thursday.
-This could perhaps be because large code changes are usually introduced during the first few days of the week. % TODO: claim needs supporting
+This could perhaps be because large code changes are usually introduced during the first few days of the week.
 The major peaks for these outages generally occur around midnight.
 The reason for this could be that deployments happen during the night, when it is likely that fewer customers will be using the service; as Langford et al. found, there is a significant difference in traffic during the day and during the night \cite{langford2012}.
 It could also be that changes are deployed during the day, but there is a delay before bugs appear.

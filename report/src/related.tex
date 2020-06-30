@@ -1,4 +1,4 @@
-\section{Related work}
+\section{Related work}\label{sec:related work}
 Having presented and discussed our results, we examine previous work done in the field.
 
 One similar study is that of Gunawi et al. \cite{gunawi2016}, who analyze the availability of popular cloud services during a time period of seven years.
@@ -25,10 +25,12 @@ Their results also suggest that cascades of failures can occur in subtle ways fr
 Finally, the largest category of software bugs in their results consists of those that are logic-specific, which complements our findings.
 
 There have also been other studies of failures in the cloud, with various aims.
-Some have focused on failure analysis in the area of high-performance computing.
+Some have focused on failure analysis in the area of high-performance computing (HPC).
 The majority of high-performance computing studies use data from providers, and conduct an analysis of large-scale production systems such as the Google Cloud cluster or the Los Alamos National Lab, or supercomputers such as the Titan or Eos \cite{chen2014, elsayed2017, liang2006, zheng2011, kavulya2010, gupta2015, gupta2017, di2019, elsayed2013, martino2014, schroeder2010, javadi2013, schroeder2007}.
-One study analyses user-reported data to analyze the causes of system failures \cite{gray1986}.
-Furthermore, there have been a number of studies analyzing provider data for failures in large-scale services, such as storage systems and cloud platforms \cite{oppenheimer2003, ford2010, schroeder2007, javadi2013, garraghan2014, yalagandula2004, li2013, zhou2015}.
-Those that study more customer-oriented services such as Apache Cassandra, Amazon S3, or MySQL generally use user-reported data \cite{frattini2013, yuan2014, iosup2011, palankar2008, fonseca2010, fonseca2010, benson2010, jiang2008, yin2011}.
+The data used in these studies most commonly comes from traces and reliability-availability-stability (RAS) logs, with some studies using job logs and system logs; one study conducts a combined analysis of RAS logs and job logs \cite{zheng2011}.
+There is also one analysis of HPC system failures with user-reported data \cite{gray1986}.
+Next, perhaps closer in subject to our work, there have been a number of studies analyzing provider data for failures in large-scale services, such as storage systems and cloud platforms \cite{oppenheimer2003, ford2010, schroeder2007, javadi2013, garraghan2014, yalagandula2004, li2013, zhou2015}.
+Those that study more customer-facing services such as Apache Cassandra, Amazon S3, or MySQL generally utilize user-reported data \cite{frattini2013, yuan2014, palankar2008, fonseca2010, fonseca2010, benson2010, jiang2008, yin2011}.
+Compared to these studies, our work contributes an analysis of customer-facing services using data from providers; in particular, the data they report publicly, as opposed to data from internal error tracking databases or reports.
 Some studies synthesize data both from providers and from customers \cite{ostermann2008, sahoo2010}.
 Finally, other analyses investigated network failures using provider data \cite{gill2011, banerjee2015, turner2010}, and virtual/physical machine failures using provider data \cite{vishwanath2010, nightingale2011, rosa2015} or a combination of provider and user data \cite{birke2014}.

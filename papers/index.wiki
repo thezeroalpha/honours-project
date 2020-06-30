@@ -59,7 +59,6 @@
     - *data:* user-reported
     - *purpose:* analyzed the causes of system failures reported to Tandem over a seven-month period.
 
-
 = services =
 == provider-reported ==
 - [[local:oppenheimer2003.pdf]]
