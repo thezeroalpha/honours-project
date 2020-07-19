@@ -10,12 +10,12 @@
 Cloud providers self-report information about service availability and failures through public status pages.
 We selected three of the largest worldwide cloud service providers: Amazon Web Services (AWS), Microsoft Azure, and Google Cloud Platform (GCP).
 The whole workflow is shown in \autoref{fig:process diagram}.
-We use data scraped from their public status pages for self-reported failures \cite{awsFeed, gcpFeed, azureFeed} in the span of one year, Jan-Dec 2018.
+We use data scraped from the providers' public status pages for self-reported failures \cite{awsFeed, gcpFeed, azureFeed} in the span of one year, Jan-Dec 2018.
 The pages were scraped every six hours, to avoid burdening the page host with more frequent scrapes and potentially incurring penalties (step 2 in \autoref{fig:process diagram}).
 The raw dataset is approximately 522 KiB in size; the cleaned and processed dataset is around 172 KiB.
 
 We use Python 3.7.7, Pandas 1.0.3, NumPy 1.18.4, SciPy 1.4.1, and Pytz 2019.3 to process and analyze the extracted structured failure data.
-We first deduplicate the data based on the service name, failure location, and event start time, selecting the events with the longest duration (step 4 in \autoref{fig:process diagram}).
+We first deduplicate the data based on the service name, failure location, and event start time, selecting the events with the longest duration in cases where the other properties are equal (step 4 in \autoref{fig:process diagram}).
 This removes 400 events in total: 137 from Azure, 127 from AWS, and 136 from GCP.
 We convert all reported event start times to the timezones appropriate to the region specified for the outage.
 We calculate the event duration in minutes based on the event start and end times.
@@ -27,7 +27,7 @@ This yields a grand total of 411 events: 139 from GCP, 144 from AWS, and 128 fro
 Service providers include in their reports a textual description of the outage.
 The description does not follow a specific format or standard, and must thus be manually analyzed for each event.
 We classify outages across several categories based on the description of the outage (step 5 in \autoref{fig:process diagram}).
-The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, our classification is less detailed.
+The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, we cannot capture as much detail in our classification.
 
 The description provides information about the qualitative aspects of the outage.
 We identify six such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage.
@@ -36,7 +36,7 @@ The severity can be strictly a visual error (i.e. performance is not affected, o
 The range of an outage can be limited to (in ascending order of geographical size) a single availability zone, a single region, or multiple regions.
 As the range of a single availability zone only applies to AWS services, outages that occurred in a single availability zone (13 events) were merged with those occurring in a single region, to simplify analysis.
 An outage can affect some users, or all users; this is understood in combination with the range of the outage (e.g. an outage may affect all users in a single region).
-An event is assumed to affect all users of the service, unless the provider explicitly reports that only some users are affected.
+An event is assumed to affect all users of the service indiscriminately, unless the provider explicitly reports that only some users are affected.
 The cause of an outage can be a code error, a side effect of maintenance, a configuration error, a network error, an external factor, increased load, or an unhealthy unit.
 A ``unit'' is not necessarily a physical (i.e. hardware) unit, but can be a virtual node, a cluster, etc.
 

@@ -8,15 +8,15 @@ But how reliable are these services?
 Though cloud services are expected to always be available, they can fail in a variety of ways.
 These failures can range from mild, such as a single-region outage affecting some users, to severe, such as a multi-region outage of multiple services.
 Furthermore, client-facing services are prone to upstream errors, and can fail when any one of their dependencies fails \cite{steen2016}.
-Such a failure results service downtime, which can lead to disruption of critical services \cite{emergencyOnCloud,healthcareCrash}, data loss \cite{tencentDataLoss}, and other issues.
+Such a failure results in service downtime, which can lead to disruption of critical services \cite{emergencyOnCloud,healthcareCrash}, data loss \cite{tencentDataLoss}, and other issues.
 
 Moreover, many popular cloud services are built on top of other services.
 For example, Netflix uses Amazon Web Services to host their applications, with around 100 000 instances per day \cite{awsNetflixStudy}.
 Due to this, a failure of one service can easily lead to the failure of many other services \cite{whittaker2013,azureXboxOutage2013,azureXboxOutage2014}.
 
+If we can understand the characteristics of these failures, we can potentially discern reasons for their occurrence.
 Therefore, we need to answer the question: \textit{how do cloud services fail?}
-If we can understand the characteristics of these failures, we can potentially discern reasons for the failures.
-This can aid cloud providers in the prevention of outages, and allow them to further increase the availability and fault-tolerance of their services.
+Characterising the failures can aid cloud providers in the prevention of outages, and allow them to further increase the availability and fault-tolerance of their services.
 
 The main contribution of this study is a systematic analysis of provider-reported failures during one calendar year.
 We develop a framework for conducting such an analysis, which can be used in future studies.

@@ -41,9 +41,9 @@ On the other hand, for single-region outages, there are multiple leading causes:
   \label{fig:causes across week}
 \end{figure}
 
-We also analyze the frequency of root causes at various points in the week, separated by vendor.
-We do not include AWS outages here, due to a lack of specified root causes.
-Outages that did not provide a root cause are also excluded (\result{np-causes-across-week-cause}).
+We analyze the frequency of root causes at various points in the week, separated by vendor.
+We exclude AWS outages, due to a lack of specified root causes.
+Outages from other providers that did not state a root cause are also excluded (\result{np-causes-across-week-cause}).
 From \autoref{fig:causes across week}, it seems that load-related outages tend to happen starting between midday on Wednesday and Thursday evening, with smaller peaks during the night on other days.
 Most outages caused by misconfiguration happen in the first half of the week, from mid-Monday until midnight on Thursday.
 This could perhaps be because large code changes are usually introduced during the first few days of the week.
@@ -57,7 +57,7 @@ It is important to note here that this is a relatively small dataset, and the tr
 \begin{figure}
   \centering
   \includegraphics[scale=0.7]{causes-vs-duration-hr-ranges.png}
-  \caption{Root causes of outages, separated by duration and vendor.}
+  \caption{Root causes of outages, separated by duration and vendor. (CFG = configuration error, CODE = code error, EXTERN = external, LOAD = increased load, MAINT = maintenance, NETW = network, UNIT = failing unit (physical/virtual))}
   \label{fig:causes vs duration ranges}
 \end{figure}
 
@@ -68,7 +68,7 @@ All AWS outages that specified a cause were shorter than six hours, and were cau
 However, as discussed above, only three AWS outages specified a cause, so AWS is not included in \autoref{fig:causes vs duration ranges}.
 Azure services have more diverse outage causes than GCP services.
 All outages of GCP services that lasted longer than twelve hours were caused by network errors; in contrast, network errors did not play a role in these types of outages for Azure services.
-The longest outages of Azure services were caused in approximately equal parts by code errors, and by configuration errors.
+The longest outages of Azure services were caused in approximately equal parts by code and configuration errors.
 Configuration errors were a common cause of Azure outages for all three duration categories, while only the shortest GCP outages (shorter than six hours) had configuration errors as a cause.
 For both GCP and Azure, increased load was a main factor in the short- and medium-duration outages.
 For GCP, there were more medium-duration outages caused by increased load than short-duration outages; for Azure services, the proportion is approximately the same.
@@ -114,11 +114,13 @@ When the performance of one or more services is degraded, it generally happens f
   \label{fig:aoe by vendor}
 \end{figure}
 
-We continue with the definition of the area of effect as the affected users and the range, and analyse the distribution of outages per vendor, in figure \autoref{fig:aoe by vendor}.
+We analyse the distribution of outages per vendor, in figure \autoref{fig:aoe by vendor}.
 We do not include events that are missing information about the users (\result{np-users-affected-by-vendor-users}) or the area of effect (\result{np-users-affected-by-vendor-range}).
 We observe that the range of the majority of outages depends on the vendor.
 The majority of GCP outages affect all users in multiple regions, while the majority of AWS outages affect all users in a single region.
 For Azure services, the outages mostly affect some users, with an approximately equal distribution between a single region and multiple regions.
+
+\clearpage
 
 \paragraph{Correlation analysis (Cram\'{e}r's V)}
 \begin{figure}
@@ -156,7 +158,7 @@ However, since the values are low, these results are inconclusive.
 We calculate uncertainty coefficients, also known as Theil's U, for the features of the data; this is shown in a matrix in \autoref{fig:theils u}.
 The uncertainty coefficient of $y$ with respect to $x$, written as $U(y|x)$, shows how much information $x$ provides about $y$, and is a value between 0 and 1.
 A value of 0 indicates that $x$ gives no information about $y$, and a value of 1 that knowledge of $x$ completely predicts $y$.
-Computing Theil's U clarifies the associations seen from Cram\'{e}r's V, as Cram\'{e}r's V is symmetric, but this is not necessarily true for the actual correlations.
+Computing Theil's U clarifies the associations seen from Cram\'{e}r's V: the symmetry of Cram\'{e}r's V does not necessarily hold for the actual correlations.
 The uncertainty coefficient provides more information about the true relations between the different features \cite{zychlinski2018}.
 
 $U(y|x)$ is computed as:
