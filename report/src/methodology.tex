@@ -30,13 +30,14 @@ We classify outages across several categories based on the description of the ou
 The classification is partially based on that done by Gunawi et al. \cite{gunawi2016, gunawi2014}, but as many of the failure descriptions are terse and brief, we cannot capture as much detail in our classification.
 
 The description provides information about the qualitative aspects of the outage.
-We identify six such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, the duration of the outage.
+We identify six such aspects: how many services were affected, the severity, the range, the users affected in the outage, the root cause of the outage, and the duration of the outage.
 An outage can affect one or multiple services; we assume that only one service is affected (namely, the reported service), unless the provider explicitly states otherwise in the description.
 The severity can be strictly a visual error (i.e. performance is not affected, only visual feedback is incorrect), service performance degradation, or complete service unavailability.
 The range of an outage can be limited to (in ascending order of geographical size) a single availability zone, a single region, or multiple regions.
 As the range of a single availability zone only applies to AWS services, outages that occurred in a single availability zone (13 events) were merged with those occurring in a single region, to simplify analysis.
 An outage can affect some users, or all users; this is understood in combination with the range of the outage (e.g. an outage may affect all users in a single region).
 An event is assumed to affect all users of the service indiscriminately, unless the provider explicitly reports that only some users are affected.
+An outage can be intermittent (with several shorter time periods where the service fails), or continous (i.e. the service fails for a single period of time).
 The cause of an outage can be a code error, a side effect of maintenance, a configuration error, a network error, an external factor, increased load, or an unhealthy unit.
 A ``unit'' is not necessarily a physical (i.e. hardware) unit, but can be a virtual node, a cluster, etc.
 
